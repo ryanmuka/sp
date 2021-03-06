@@ -2,8 +2,8 @@
 date_default_timezone_set("Asia/Jakarta"); //WIB
 require 'class.final.php';
 $shopee = new Shopee();
-
 start:
+    $flashsale_date = strtotime(date('2021-03-06 07:09:00')); // SETTING WAKTU FLASHSALE DISINI * (Tahun-Bulan-Tanggal Jam:Menit:Detik) 
 	$cart = $shopee->cart();
 	if ($cart) {
 		if (isset($cart['shop_orders'][0]['items'][0]['shopid'])) {
@@ -20,6 +20,10 @@ start:
 				$cart_checkout = $shopee->cart_checkout($itemArray);
 				if ($cart_checkout) {
 					echo "[SUCCESS] ".date('Y-m-d H:i:s')." | Berhasil checkout barang yang ada di keranjang \n";
+if (strtotime(date('Y-m-d H:i:s')) < $flashsale_date) {
+				echo "[ERROR] ".date('Y-m-d H:i:s')." | Flashsale belum dimulai \n";
+				goto cart_checkout;
+}
 					$get_checkout = $shopee->get_checkout($itemArray);
 					if ($get_checkout) {
 						place_order:
