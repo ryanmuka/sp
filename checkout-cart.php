@@ -3,7 +3,7 @@ date_default_timezone_set("Asia/Jakarta"); //WIB
 require 'class.final.php';
 $shopee = new Shopee();
 start:
-    $flashsale_date = strtotime(date('2021-03-06 07:30:00')); // Start Your Time : Tahun Tanggal Bulan 
+    $flashsale_date = strtotime(date('2021-03-10 11:59:59')); // Start Your Time : Tahun Tanggal Bulan 
 	$cart = $shopee->cart();
 	if ($cart) {
 		if (isset($cart['shop_orders'][0]['items'][0]['shopid'])) {
